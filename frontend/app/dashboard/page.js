@@ -5,6 +5,7 @@ import { fetchInitialData } from '../../utils/api';
 import { subscribeToApplianceUpdates, controlAppliance } from '../../utils/socket';
 import socket from '../../utils/socket'; // Import socket instance
 import { NavBar } from '../components/NavBar';
+import RoomCard from "../components/RoomCard";
 
 const AppliancePage = () => {
   const [appliances, setAppliances] = useState([]);
@@ -16,7 +17,7 @@ const AppliancePage = () => {
     const loadData = async () => {
       try {
         const initialData = await fetchInitialData();
-        setAppliances(data.appliances || []);
+        setData(initialData);
       } catch (err) {
         setError(err.message);
       }
@@ -43,6 +44,11 @@ const AppliancePage = () => {
     };
   }, []);
 
+  useEffect(() => {
+    // Log data when it changes
+    console.log('Updated data:', data);
+  }, [data]);
+
   const handleControlAppliance = (applianceId, action) => {
     const data = {
       userId: 'user1', // Replace with actual user ID
@@ -57,28 +63,16 @@ const AppliancePage = () => {
   };
 
   if (error) return <div>Error: {error}</div>;
-  if (!appliances.length) return <div>Loading...</div>;
+  if (!data.rooms) return <div>Loading...</div>;
 
   return (
-    <div>
-      <NavBar/>
-      <h1 className='text-black'>Appliances</h1>
-      <ul>
-        {appliances.map((appliance) => (
-          <li key={appliance.applianceId} className='text-black'>
-            <p>Name: {appliance.name}</p>
-            <p>Type {appliance.type}</p>
-
-            <p>Status: {appliance.status}</p>
-            <button onClick={() => handleControlAppliance(appliance.applianceId, 'on')}>
-              Turn On
-            </button>
-            <button onClick={() => handleControlAppliance(appliance.applianceId, 'off')}>
-              Turn Off
-            </button>
-          </li>
+    <div className="flex flex-col items-center">
+      <NavBar />
+      <div className="w-4/5 flex flex-col gap-5 mt-5">
+        {data.rooms && data.rooms.map((room, index) => (
+          <RoomCard key={index} data={room} />
         ))}
-      </ul>
+      </div>
     </div>
   );
 };
