@@ -44,6 +44,11 @@ io.on('connection', (socket: Socket) => {
 
 // Start server
 const PORT = process.env.PORT || 3005;
-server.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
-});
+
+if (!process.env.VERCEL) {
+  server.listen(PORT, () => {
+    console.log(`Server is running on port ${PORT}`);
+  });
+}
+
+export default app;
