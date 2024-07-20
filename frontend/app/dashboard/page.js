@@ -10,7 +10,7 @@ const AppliancePage = () => {
   const [appliances, setAppliances] = useState([]);
   const [data, setData] = useState({});
   const [error, setError] = useState(null);
-  const [username, setUsername] = useState('John Doe'); // Replace with actual username or fetch from API
+  const [username, setUsername] = useState('User'); // Replace with actual username or fetch from API
 
   useEffect(() => {
     // Fetch initial data
@@ -69,7 +69,7 @@ const AppliancePage = () => {
     <div className="flex flex-col items-center px-8">
       <NavBar />
       <div className="w-full flex flex-col gap-4 mt-5 px-8">
-        <h1 className="text-6xl font-bold text-white-600 ">Hello, {username}!</h1> {/* Greeting message */}
+        <h1 className="text-6xl font-bold text-white-600 ">Hello, {username} !</h1> {/* Greeting message */}
         {data.rooms && data.rooms.map((room, index) => (
           <RoomCard key={index} data={room} />
         ))}
