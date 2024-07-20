@@ -28,17 +28,18 @@ import roomData from "@/data/roomData";
 function Page() {
   const [data, setData] = useState({rooms: []});
   useEffect(() => {
+
     setData(roomData.residences[0]);
     console.log(roomData.residences[0]);
   }, []);
 
   return (
-    <main className="bg-slate-900 flex flex-col w-screen">
+    <main className="bg-slate-900 flex flex-col w-screen items-center">
       <NavBar />
       <div>
       {/*  Search bar and filters */}
       </div>
-      <div>
+      <div className="w-4/5 flex flex-col gap-5">
         {data.rooms.map((room, index) => (
           <RoomCard key={index} data={room} />
         ))}
