@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import { fetchInitialData } from '../../utils/api';
 import { subscribeToApplianceUpdates, controlAppliance } from '../../utils/socket';
 import socket from '../../utils/socket'; // Import socket instance
+import { NavBar } from '../components/NavBar';
 
 const AppliancePage = () => {
   const [appliances, setAppliances] = useState([]);
@@ -59,10 +60,11 @@ const AppliancePage = () => {
 
   return (  
     <div>
-      <h1>Appliances</h1>
+      <NavBar/>
+      <h1 className='text-black'>Appliances</h1>
       <ul>
         {appliances.map((appliance) => (
-          <li key={appliance.applianceId}>
+          <li key={appliance.applianceId} className='text-black'>
             <p>Name: {appliance.name}</p>
             <p>Type {appliance.type}</p>
 

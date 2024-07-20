@@ -1,5 +1,5 @@
 // src/services/deviceService.ts
-import { User, ControlApplianceRequest, Appliance } from '../types';
+import { User, ControlApplianceRequest, Appliance, ApplianceWithContext, Residence } from '../types';
 
 export const users: User[] = [
   {
@@ -8,6 +8,7 @@ export const users: User[] = [
     residences: [
       {
         residenceId: 'residence1',
+        name: 'Main House',
         rooms: [
           {
             roomId: 'room1',
@@ -28,6 +29,7 @@ export const users: User[] = [
       },
       {
         residenceId: 'residence2',
+        name: 'Vacation Home',
         rooms: [
           {
             roomId: 'room3',
@@ -66,15 +68,28 @@ export const controlAppliance = (data: ControlApplianceRequest): string | undefi
   return undefined;
 };
 
-// Add this function to get all appliances
-export const getAllAppliances = (): Appliance[] => {
-  const appliances: Appliance[] = [];
+// Add this function to get all appliances with context information
+export const getAllAppliances = (): ApplianceWithContext[] => {
+  const appliancesWithContext: ApplianceWithContext[] = [];
   for (const user of users) {
     for (const residence of user.residences) {
       for (const room of residence.rooms) {
-        appliances.push(...room.appliances);
+        for (const appliance of room.appliances) {
+          appliancesWithContext.push({
+            ...appliance,
+            roomId: room.roomId,
+            roomName: room.name,
+            residenceId: residence.residenceId,
+            residenceName: residence.name
+          });
+        }
       }
     }
   }
-  return appliances;
+  return appliancesWithContext;
+};
+
+// Add this function to get all user data
+export const getUserData = (userId: string): User | undefined => {
+  return findUser(userId);
 };
