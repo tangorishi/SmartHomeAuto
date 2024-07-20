@@ -1,10 +1,13 @@
 // app/dashboard/page.js
 "use client";
 import { useEffect, useState } from 'react';
-import { fetchInitialData } from '@/utils/api';
-import { subscribeToApplianceUpdates, controlAppliance } from '@/utils/socket';
-import socket from '@/utils/socket'; // Import socket instance
+import { fetchInitialData } from '../../utils/api';
+import { subscribeToApplianceUpdates, controlAppliance } from '../../utils/socket';
+import socket from '../../utils/socket'; // Import socket instance
+import { NavBar } from '../components/NavBar';
 
+
+import {useEffect, useState} from "react";
 
 import NavBar from "@/components/NavBar";
 import RoomCard from "@/components/RoomCard";
@@ -13,10 +16,15 @@ import SearchBar from "@/components/SearchBar";
 
 function AppliancePage() {
   const [data, setData] = useState({rooms: []});
-  const [search, setSearch]=useState('');
-  const [results, setResults]=useState('');
-  const [appliances, setAppliances] = useState([]);
-  const [error, setError] = useState('');
+//search setsearch
+  const [search, setSearch]=useState('')
+//results, setresults
+  const [results, setResults]=useState('')
+//useffect 
+  useEffect(() =>{
+    
+  }
+)
 
 //filter data based on search, add to results via setresults
   useEffect(() => {
@@ -69,10 +77,11 @@ function AppliancePage() {
 
   return (  
     <div>
-      <h1>Appliances</h1>
+      <NavBar/>
+      <h1 className='text-black'>Appliances</h1>
       <ul>
         {appliances.map((appliance) => (
-          <li key={appliance.applianceId}>
+          <li key={appliance.applianceId} className='text-black'>
             <p>Name: {appliance.name}</p>
             <p>Type {appliance.type}</p>
 
