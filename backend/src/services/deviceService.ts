@@ -1,4 +1,4 @@
-import { User, ControlApplianceRequest } from '../types';
+import { User, ControlApplianceRequest, Appliance } from '../types';
 
 export const users: User[] = [
   {
@@ -64,3 +64,19 @@ export const controlAppliance = (data: ControlApplianceRequest): string | undefi
   }
   return undefined;
 };
+
+// src/services/deviceService.ts
+
+// Add this function to get all appliances
+export const getAllAppliances = (): Appliance[] => {
+  const appliances: Appliance[] = [];
+  for (const user of users) {
+    for (const residence of user.residences) {
+      for (const room of residence.rooms) {
+        appliances.push(...room.appliances);
+      }
+    }
+  }
+  return appliances;
+};
+

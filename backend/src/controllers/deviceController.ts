@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { controlAppliance, users } from '../services/deviceService'; // Import users data from your data source
+import { controlAppliance, getAllAppliances, users } from '../services/deviceService'; // Import users data from your data source
 import { ControlApplianceRequest } from '../types';
 
 // Handler to control an appliance
@@ -34,4 +34,12 @@ export const getApplianceDetailsHandler = (req: Request, res: Response) => {
   }
 
   res.status(404).json({ error: 'Appliance not found' });
+};
+
+// src/controllers/deviceController.ts
+
+// Handler to get all appliances
+export const getAllAppliancesHandler = (req: Request, res: Response) => {
+  const appliances = getAllAppliances();
+  res.status(200).json({ appliances });
 };

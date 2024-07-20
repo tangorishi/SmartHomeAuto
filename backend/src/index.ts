@@ -1,18 +1,25 @@
-// src/server.ts
-
 import express from 'express';
 import { createServer } from 'http';
 import { Server, Socket } from 'socket.io';
+import cors from 'cors'; // Import the cors package
 import deviceRoutes from './routes/deviceRoutes';
 import { controlAppliance } from './services/deviceService';
 import { ControlApplianceRequest } from './types';
 
 const app = express();
 const server = createServer(app);
-const io = new Server(server);
+const io = new Server(server, {
+  cors: {
+    origin: '*', // Allow all origins for CORS
+    methods: ['GET', 'POST'], // Allow specific HTTP methods
+  }
+});
 
 // Middleware to parse JSON
 app.use(express.json());
+
+// Enable CORS for all origins
+app.use(cors());
 
 // Routes
 app.use('/api', deviceRoutes);
