@@ -1,7 +1,7 @@
 // src/routes/deviceRoutes.ts
 
 import { Router } from 'express';
-import { controlApplianceHandler, getApplianceDetailsHandler, getAllAppliancesHandler } from '../controllers/deviceController';
+import { controlApplianceHandler, getApplianceDetailsHandler, getAllAppliancesHandler, getAllDataHandler } from '../controllers/deviceController';
 
 const router = Router();
 
@@ -14,7 +14,7 @@ router.get('/appliance/:applianceId', getApplianceDetailsHandler);
 
 // src/routes/deviceRoutes.ts
 
-
+router.get("/all-data", getAllDataHandler);
 
 
 // Route to get all appliances
