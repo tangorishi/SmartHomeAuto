@@ -5,7 +5,7 @@ import LightCard from "./LightCard";
 function RoomCard({ data }) {
   const [collapsed, setCollapsed] = useState(false);
 
-  console.log(data);
+  console.log('roomcard data', data);
 
   return (
     <div className="flex flex-col gap-1 text-2xl bg-slate-700" onClick={() => setCollapsed(!collapsed)}>
@@ -17,7 +17,7 @@ function RoomCard({ data }) {
       <div className={`${collapsed ? 'hidden' : 'flex flex-row'}`}>
         {
           data.appliances.map((appliance, index) => (
-            <LightCard />
+            <LightCard key={appliance.applianceId} data={appliance} />
           ))
         }
       </div>
