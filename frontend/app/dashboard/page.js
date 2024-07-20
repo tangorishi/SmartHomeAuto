@@ -6,27 +6,10 @@ import { subscribeToApplianceUpdates, controlAppliance } from '../../utils/socke
 import socket from '../../utils/socket'; // Import socket instance
 import { NavBar } from '../components/NavBar';
 
+const AppliancePage = () => {
+  const [appliances, setAppliances] = useState([]);
+  const [error, setError] = useState(null);
 
-import {useEffect, useState} from "react";
-
-import NavBar from "@/components/NavBar";
-import RoomCard from "@/components/RoomCard";
-import roomData from "@/data/roomData";
-import SearchBar from "@/components/SearchBar";
-
-function AppliancePage() {
-  const [data, setData] = useState({rooms: []});
-//search setsearch
-  const [search, setSearch]=useState('')
-//results, setresults
-  const [results, setResults]=useState('')
-//useffect 
-  useEffect(() =>{
-    
-  }
-)
-
-//filter data based on search, add to results via setresults
   useEffect(() => {
     // Fetch initial data
     const loadData = async () => {
@@ -75,7 +58,7 @@ function AppliancePage() {
   if (error) return <div>Error: {error}</div>;
   if (!appliances.length) return <div>Loading...</div>;
 
-  return (  
+  return (
     <div>
       <NavBar/>
       <h1 className='text-black'>Appliances</h1>
