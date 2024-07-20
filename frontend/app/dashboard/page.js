@@ -74,13 +74,15 @@ function AppliancePage() {
   if (error) return <div>Error: {error}</div>;
   if (!appliances.length) return <div>Loading...</div>;
 
-  return (
+  return (  
     <div>
       <h1>Appliances</h1>
       <ul>
         {appliances.map((appliance) => (
           <li key={appliance.applianceId}>
             <p>Name: {appliance.name}</p>
+            <p>Type {appliance.type}</p>
+
             <p>Status: {appliance.status}</p>
             <button onClick={() => handleControlAppliance(appliance.applianceId, 'on')}>
               Turn On
