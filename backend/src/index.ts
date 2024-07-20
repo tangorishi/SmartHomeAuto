@@ -19,7 +19,9 @@ const io = new Server(server, {
 app.use(express.json());
 
 // Enable CORS for all origins
-app.use(cors());
+app.use(cors({
+  origin: '*'
+}));
 
 // Routes
 app.use('/api', deviceRoutes);
@@ -44,6 +46,11 @@ io.on('connection', (socket: Socket) => {
 
 // Start server
 const PORT = process.env.PORT || 3005;
-server.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
-});
+
+if (!process.env.VERCEL) {
+  server.listen(PORT, () => {
+    console.log(`Server is running on port ${PORT}`);
+  });
+}
+
+export default app;
