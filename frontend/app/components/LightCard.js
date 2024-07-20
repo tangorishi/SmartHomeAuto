@@ -1,9 +1,14 @@
-function LightCard({data}) {
+function LightCard({ data }) {
   console.log(data);
 
   return (
-    <div>
-      {data.name}
+    <div className="flex items-center pl-2 flex-col">
+      <div className="font-medium">
+        {data.name}
+      </div>
+      <div className="text-start">
+        {"30%"}
+      </div>
     </div>
   )
 }
