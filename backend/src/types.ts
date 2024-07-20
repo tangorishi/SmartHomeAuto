@@ -15,6 +15,7 @@ export interface Room {
 
 export interface Residence {
   residenceId: string;
+  name: string; // Add name property to Residence
   rooms: Room[];
 }
 
@@ -31,4 +32,11 @@ export interface ControlApplianceRequest {
   applianceId: string;
   action: 'on' | 'off';
   attributes?: Record<string, any>; // Optional attributes
+}
+
+export interface ApplianceWithContext extends Appliance {
+  roomId: string;
+  roomName: string;
+  residenceId: string;
+  residenceName: string;
 }
