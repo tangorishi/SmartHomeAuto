@@ -1,0 +1,62 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// prisma/schema.prisma
+
+model User {
+  userId      String      @id @default(uuid())
+  email       String      @unique
+  name        String
+  residences  Residence[]
+}
+
+model Residence {
+  residenceId String      @id @default(uuid())
+  name        String
+  rooms       Room[]
+  userId      String
+  user        User        @relation(fields: [userId], references: [userId])
+}
+
+model Room {
+  roomId      String      @id @default(uuid())
+  name        String
+  appliances  Appliance[]
+  residenceId String
+  residence   Residence   @relation(fields: [residenceId], references: [residenceId])
+}
+
+model Appliance {
+  applianceId String      @id @default(uuid())
+  name        String
+  type        String?
+  status      ApplianceStatus
+  attributes  Json?
+  roomId      String
+  room        Room        @relation(fields: [roomId], references: [roomId])
+}
+
+enum ApplianceType {
+  light
+  fan
+  oven
+  other
+}
+
+enum ApplianceStatus {
+  on
+  off
+}
+

@@ -178,7 +178,7 @@ const EnergyDashboard = () => {
   };
 
   return (
-    <div className="dashboard-container">
+    <div className="flex flex-col items-center p-5 bg-gradient-to-br from-gray-800 via-gray-900 to-black min-h-screen w-full box-border ">
       <NavBar />
       <h1 className="text-3xl">Household Energy Dashboard</h1>
       <div className="flex flex-row justify-evenly py-8 w-[90%]">

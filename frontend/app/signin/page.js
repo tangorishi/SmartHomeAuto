@@ -11,8 +11,8 @@ export default function Signin() {
                     Register For Free
                 </div>
                 <button
-                    onClick={async () => {
-                        await signIn("google", { callbackUrl: 'http://localhost:3000/dashboard' });
+                    onClick={() => {
+                         signIn("google", { callbackUrl: 'http://localhost:3000/dashboard' });
                     }}
                     className="hover:shadow-md text-center border border-gray-300 p-2.5 rounded-lg bg-gray-50 flex justify-center items-center gap-3 col-span-2"
                 >

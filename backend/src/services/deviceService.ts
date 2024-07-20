@@ -20,7 +20,7 @@ export const users: User[] = [
           },
           {
             roomId: 'room2',
-            name: 'Bedroom',
+            name: 'Bedroom 🛏️',
             appliances: [
               { applianceId: 'light2', name: 'Night Light', type: 'light', status: 'on', attributes: { brightness: 20 } }
             ]

@@ -6,7 +6,7 @@ function RoomCard({ data }) {
   const [appliances, setAppliances] = useState(data.appliances);
 
   const toggleApplianceStatus = (applianceId) => {
-    setAppliances(appliances.map(appliance => 
+    setAppliances(appliances.map(appliance =>
       appliance.applianceId === applianceId
         ? { ...appliance, status: appliance.status === 'off' ? 'on' : 'off' }
         : appliance
@@ -14,24 +14,25 @@ function RoomCard({ data }) {
   };
 
   return (
-    <div className="flex flex-col  text-2xl max-w-md w-full  text-white px-4 py-2">
-      <div className="flex justify-start gap-1 cursor-pointer select-none" onClick={() => setCollapsed(!collapsed)}>
+    <div className="flex flex-col  max-w-xl w-full  text-white  py-2">
+      <div className="flex justify-start cursor-pointer select-none" onClick={() => setCollapsed(!collapsed)}>
         <div>{collapsed ? '▸' : '▾'}</div>
-        <div>{data.name}</div>
+        <div className="text-2xl">{data.name}</div>
       </div>
 
       {!collapsed && (
         <div className="flex flex-col  gap-4 mt-2 text-black  ">
           {appliances.map(appliance => (
-            <div 
-              key={appliance.applianceId} 
-              className="flex bg-[#AEDBE3] justify-between gap-2 items-center border shadow-md p-4 rounded-xl w-72 hover:bg-orange-50"
+            <div
+              key={appliance.applianceId}
+              className="flex bg-[#AEDBE3] justify-between gap-2 items-center border shadow-md p-4 rounded-xl text-xs w-64 hover:bg-orange-50"
             >
               <div className="flex items-center gap-2">
-                <Image src="/bulb.svg" width="40" height="40" alt="bulb" />
+                {appliance.status === "on" ? <Image src="/bulb.svg" width="40" height="40" alt="bulb" /> :
+                  <Image src="/bulboff.svg" width="40" height="40" alt="bulb" />}
                 <div className="flex flex-col items-start">
-                  <div className="text-lg">{appliance.name}</div>
-                  <div className="text-sm text-gray-600">{appliance.status}</div>
+                  <div className="text-sm">{appliance.name}</div>
+                  <div className="text-xs text-gray-600">{appliance.status}</div>
                 </div>
               </div>
               <button
