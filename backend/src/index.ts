@@ -19,7 +19,9 @@ const io = new Server(server, {
 app.use(express.json());
 
 // Enable CORS for all origins
-app.use(cors());
+app.use(cors({
+  origin: '*'
+}));
 
 // Routes
 app.use('/api', deviceRoutes);
