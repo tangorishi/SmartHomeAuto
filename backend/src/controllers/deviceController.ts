@@ -36,6 +36,15 @@ export const getApplianceDetailsHandler = (req: Request, res: Response) => {
   res.status(404).json({ error: 'Appliance not found' });
 };
 
+export function getAllDataHandler(req:Request, res:Response){
+  for (const user of users) {
+    return res.status(200).json({
+      users
+    })
+  }
+
+}
+
 // src/controllers/deviceController.ts
 
 // Handler to get all appliances
