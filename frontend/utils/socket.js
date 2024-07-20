@@ -2,7 +2,7 @@
 import { io } from 'socket.io-client';
 
 // Replace with your backend URL
-const socket = io('https://smart-home-auto-backend.vercel.app', {
+const socket = io('http://localhost:3005', {
   transports: ['websocket', 'polling'] // Specify transports if needed
 });
 
