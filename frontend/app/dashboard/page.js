@@ -8,13 +8,14 @@ import { NavBar } from '../components/NavBar';
 
 const AppliancePage = () => {
   const [appliances, setAppliances] = useState([]);
+  const [data, setData] = useState({});
   const [error, setError] = useState(null);
 
   useEffect(() => {
     // Fetch initial data
     const loadData = async () => {
       try {
-        const data = await fetchInitialData();
+        const initialData = await fetchInitialData();
         setAppliances(data.appliances || []);
       } catch (err) {
         setError(err.message);
