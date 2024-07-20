@@ -4,7 +4,7 @@ import Link from "next/link";
 
 export function NavBar(){
     const session = useSession();
-    return <div className="px-8 py-8 w-full text-white flex justify-end gap-4 ">
+    return <div className="px-8 py-8 pt-2 w-screem text-white flex justify-center gap-4 ">
         {/*<div>{session.data.user?.name.split(" ")[0]}</div>*/}
         <div className=" hover:scale-105">
             <Link href="/dashboard">

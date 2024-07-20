@@ -15,7 +15,8 @@ import {
   ArcElement,
   RadialLinearScale,
 } from 'chart.js';
-import './DashboardLayout.css'; 
+import './DashboardLayout.css';
+import {NavBar} from "../components/NavBar";
 
 ChartJS.register(
   Title,
@@ -178,11 +179,30 @@ const EnergyDashboard = () => {
 
   return (
     <div className="dashboard-container">
-      <h1>Household Energy Dashboard</h1>
+      <NavBar />
+      <h1 className="text-3xl">Household Energy Dashboard</h1>
+      <div className="flex flex-row justify-evenly py-8 w-[90%]">
+        <div className="flex flex-col items-center bg-gray-300 text-black px-8 py-4 rounded">
+          <label className="text-2xl">Monthly Usage</label>
+          <label className="text-xl">Avg 5.6 Kwh</label>
+        </div>
+        <div className="flex flex-col items-center bg-gray-300 text-black px-8 py-4 rounded">
+          <label className="text-2xl">Monthly Usage</label>
+          <label className="text-xl">Avg 5.6 Kwh</label>
+        </div>
+        <div className="flex flex-col items-center bg-gray-300 text-black px-8 py-4 rounded">
+          <label className="text-2xl">Monthly Usage</label>
+          <label className="text-xl">Avg 5.6 Kwh</label>
+        </div>
+        <div className="flex flex-col items-center bg-gray-300 text-black px-8 py-4 rounded">
+          <label className="text-2xl">Monthly Usage</label>
+          <label className="text-xl">Avg 5.6 Kwh</label>
+        </div>
+      </div>
       <div className="chart-section">
         <div className="chart-item">
           <h3>Energy Usage</h3>
-          <Bar 
+          <Bar
             data={barData}
             options={{
               responsive: true,
@@ -190,20 +210,20 @@ const EnergyDashboard = () => {
                 legend: { position: 'top', labels: { color: 'white' } },
                 title: { display: true, text: 'Energy Usage', color: 'white' },
                 animation: {
-                  duration: 2000, 
-                  easing: 'easeInOutQuart' 
+                  duration: 2000,
+                  easing: 'easeInOutQuart'
                 }
               },
               scales: {
                 x: { ticks: { color: 'white' } },
                 y: { ticks: { color: 'white' } }
               }
-            }} 
+            }}
           />
         </div>
         <div className="chart-item">
           <h3>Grid Energy Consumption</h3>
-          <Radar 
+          <Radar
             data={radarData}
             options={{
               responsive: true,
@@ -211,8 +231,8 @@ const EnergyDashboard = () => {
                 legend: { position: 'top', labels: { color: 'white' } },
                 title: { display: true, text: 'Grid Energy Consumption', color: 'white' },
                 animation: {
-                  duration: 2000, 
-                  easing: 'easeInOutQuart' 
+                  duration: 2000,
+                  easing: 'easeInOutQuart'
                 }
               },
               scales: {
@@ -223,14 +243,14 @@ const EnergyDashboard = () => {
                   ticks: { color: 'white' }
                 }
               }
-            }} 
+            }}
           />
         </div>
       </div>
       <div className="chart-section">
         <div className="chart-item">
           <h3>Energy Distribution</h3>
-          <Pie 
+          <Pie
             data={pieData}
             options={{
               responsive: true,
@@ -238,16 +258,16 @@ const EnergyDashboard = () => {
                 legend: { position: 'top', labels: { color: 'white' } },
                 title: { display: true, text: 'Energy Distribution', color: 'white' },
                 animation: {
-                  duration: 2000, 
-                  easing: 'easeInOutQuart' 
+                  duration: 2000,
+                  easing: 'easeInOutQuart'
                 }
               }
-            }} 
+            }}
           />
         </div>
         <div className="chart-item">
           <h3>Self-consumed Solar Power</h3>
-          <Radar 
+          <Radar
             data={radarData}
             options={{
               responsive: true,
@@ -255,8 +275,8 @@ const EnergyDashboard = () => {
                 legend: { position: 'top', labels: { color: 'white' } },
                 title: { display: true, text: 'Self-consumed Solar Power', color: 'white' },
                 animation: {
-                  duration: 2000, 
-                  easing: 'easeInOutQuart' 
+                  duration: 2000,
+                  easing: 'easeInOutQuart'
                 }
               },
               scales: {
@@ -267,14 +287,14 @@ const EnergyDashboard = () => {
                   ticks: { color: 'white' }
                 }
               }
-            }} 
+            }}
           />
         </div>
       </div>
       <div className="chart-section">
         <div className="chart-item">
           <h3>Individual Devices Detailed Usage</h3>
-          <Bar 
+          <Bar
             data={detailedUsageData}
             options={{
               responsive: true,
@@ -282,20 +302,20 @@ const EnergyDashboard = () => {
                 legend: { position: 'top', labels: { color: 'white' } },
                 title: { display: true, text: 'Individual Devices Detailed Usage', color: 'white' },
                 animation: {
-                  duration: 2000, 
-                  easing: 'easeInOutQuart' 
+                  duration: 2000,
+                  easing: 'easeInOutQuart'
                 }
               },
               scales: {
                 x: { ticks: { color: 'white' } },
                 y: { ticks: { color: 'white' } }
               }
-            }} 
+            }}
           />
         </div>
         <div className="chart-item">
           <h3>Individual Devices Total Usage</h3>
-          <Bar 
+          <Bar
             data={totalUsageData}
             options={{
               indexAxis: 'y',
@@ -304,15 +324,15 @@ const EnergyDashboard = () => {
                 legend: { position: 'top', labels: { color: 'white' } },
                 title: { display: true, text: 'Individual Devices Total Usage', color: 'white' },
                 animation: {
-                  duration: 2000, 
-                  easing: 'easeInOutQuart' 
+                  duration: 2000,
+                  easing: 'easeInOutQuart'
                 }
               },
               scales: {
                 x: { ticks: { color: 'white' } },
                 y: { ticks: { color: 'white' } }
               }
-            }} 
+            }}
           />
         </div>
       </div>
