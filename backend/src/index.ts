@@ -20,7 +20,9 @@ app.use(express.json());
 
 // Enable CORS for all origins
 app.use(cors({
-  origin: '*'
+  origin: '*',
+  methods: ['GET', 'POST'],
+  optionsSuccessStatus: 200,
 }));
 
 // Routes
