@@ -1,19 +1,31 @@
 "use client"
-import { useSession } from "next-auth/react";
+import { signIn, signOut, useSession } from "next-auth/react";
 import Link from "next/link";
 
-export function NavBar(){
+export function NavBar() {
     const session = useSession();
-    return <div className="px-8 py-8 pt-2 w-screem text-white flex justify-center gap-4 ">
-        {/*<div>{session.data.user?.name.split(" ")[0]}</div>*/}
+    return <div className="px-8 py-8 w-full text-white flex justify-end gap-4 ">
+        <div className="flex flex-start ">
+            {session.status=="unauthenticated"?
+            <button className=" hover:scale-105" onClick={()=>signIn()}>
+                    Login
+            </button>:null
+        }
+        </div>
+        {session.status === "authenticated" ?
+            <button className=" hover:scale-105" onClick={()=>signOut()}>
+                    Logout
+            </button> : null
+        }
         <div className=" hover:scale-105">
             <Link href="/dashboard">
-            Home
+                Home
             </Link>
         </div>
+
         <div className=" hover:scale-110">
             <Link href="/usage">
-            Consumption
+                Consumption
             </Link>
         </div>
     </div>

@@ -5,12 +5,14 @@ import { subscribeToApplianceUpdates, controlAppliance } from '../../utils/socke
 import socket from '../../utils/socket'; // Import socket instance
 import { NavBar } from '../components/NavBar';
 import RoomCard from "../components/RoomCard";
+import { useSession } from 'next-auth/react';
 
 const AppliancePage = () => {
+  const session = useSession();
   const [appliances, setAppliances] = useState([]);
   const [data, setData] = useState({});
   const [error, setError] = useState(null);
-  const [username, setUsername] = useState('User'); // Replace with actual username or fetch from API
+  const [username, setUsername] = useState('User'); // Initial username
 
   useEffect(() => {
     // Fetch initial data
@@ -49,6 +51,7 @@ const AppliancePage = () => {
     console.log('Updated data:', data);
   }, [data]);
 
+
   const handleControlAppliance = (applianceId, action) => {
     const data = {
       userId: 'user1', // Replace with actual user ID
@@ -63,13 +66,19 @@ const AppliancePage = () => {
   };
 
   if (error) return <div>Error: {error}</div>;
-  if (!data.rooms) return <div>Loading...</div>;
-
+  console.log(username);
+  if(session.status==="loading"){
+    return <div>
+      Loading...
+    </div>
+  }
   return (
     <div className="flex flex-col items-center px-8">
       <NavBar />
       <div className="w-full flex flex-col gap-4 mt-5 px-8">
-        <h1 className="text-6xl font-bold text-white-600 ">Hello, {username} !</h1> {/* Greeting message */}
+        {session.status==="authenticated"?<h1 className="text-6xl font-bold text-white-600">Hello, {session.data.user.name.split(" ")[0]} !</h1>:
+        <h1 className="text-6xl font-bold text-white-600">Hello, {username} !</h1>}
+         {/* Greeting message */}
         {data.rooms && data.rooms.map((room, index) => (
           <RoomCard key={index} data={room} />
         ))}
