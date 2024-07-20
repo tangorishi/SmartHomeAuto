@@ -1,6 +1,5 @@
 import { Inter } from "next/font/google";
 import "./globals.css";
-
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
@@ -10,12 +9,10 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en ">
-      <body className={inter.className}>
-        <div className="bg-white h-screen w-full">
-        {children}
-        </div>
-        </body>
+    <html lang="en">
+      <body className={`bg-gradient-to-br h-screen from-gray-800 via-gray-900 to-black ${inter.className} text-white`}>
+      {children}
+      </body>
     </html>
   );
 }

@@ -1,4 +1,4 @@
-import {useState} from "react";
+import { useState } from "react";
 import ApplianceCard from "@/components/ApplianceCard";
 
 function RoomCard({ data }) {
@@ -8,20 +8,20 @@ function RoomCard({ data }) {
 
   return (
     <div className="flex flex-col gap-1 text-2xl bg-slate-700" onClick={() => setCollapsed(!collapsed)}>
-      <div className="flex flex-row gap-1 cursor-pointer select-none ">
+      <div className="flex flex-row gap-1 cursor-pointer select-none">
         <div>{collapsed ? '▸' : '▾'}</div>
-        <div className="">{data.name}</div>
+        <div>{data.name}</div>
       </div>
 
       <div className={`${collapsed ? 'hidden' : 'flex flex-row'}`}>
-      {
+        {
           data.appliances.map((appliance, index) => (
-            <ApplianceCard />
+            <ApplianceCard key={appliance.id || index} appliance={appliance} />
           ))
         }
       </div>
     </div>
-  )
+  );
 }
 
 export default RoomCard;
