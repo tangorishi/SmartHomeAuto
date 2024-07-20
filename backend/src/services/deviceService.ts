@@ -1,3 +1,4 @@
+// src/services/deviceService.ts
 import { User, ControlApplianceRequest, Appliance } from '../types';
 
 export const users: User[] = [
@@ -12,15 +13,15 @@ export const users: User[] = [
             roomId: 'room1',
             name: 'Living Room',
             appliances: [
-              { applianceId: 'light1', name: 'Light', status: 'off', attributes: { brightness: 50 } },
-              { applianceId: 'fan1', name: 'Fan', status: 'off', attributes: { speed: 3 } }
+              { applianceId: 'light1', name: 'Light', type: 'light', status: 'off', attributes: { brightness: 50 } },
+              { applianceId: 'fan1', name: 'Fan', type: 'fan', status: 'off', attributes: { speed: 3 } }
             ]
           },
           {
             roomId: 'room2',
             name: 'Bedroom',
             appliances: [
-              { applianceId: 'light2', name: 'Night Light', status: 'on', attributes: { brightness: 20 } }
+              { applianceId: 'light2', name: 'Night Light', type: 'light', status: 'on', attributes: { brightness: 20 } }
             ]
           }
         ]
@@ -32,7 +33,7 @@ export const users: User[] = [
             roomId: 'room3',
             name: 'Kitchen',
             appliances: [
-              { applianceId: 'oven1', name: 'Oven', status: 'off', attributes: { temperature: 180 } }
+              { applianceId: 'oven1', name: 'Oven', type: 'oven', status: 'off', attributes: { temperature: 180 } }
             ]
           }
         ]
@@ -65,8 +66,6 @@ export const controlAppliance = (data: ControlApplianceRequest): string | undefi
   return undefined;
 };
 
-// src/services/deviceService.ts
-
 // Add this function to get all appliances
 export const getAllAppliances = (): Appliance[] => {
   const appliances: Appliance[] = [];
@@ -79,4 +78,3 @@ export const getAllAppliances = (): Appliance[] => {
   }
   return appliances;
 };
-
