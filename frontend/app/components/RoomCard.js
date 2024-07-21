@@ -1,5 +1,8 @@
 import { useState } from "react";
 import Image from "next/image";
+import { useRecoilState } from "recoil";
+import { messageState } from "../recoilContextProvider";
+
 
 function RoomCard({ data }) {
   const [collapsed, setCollapsed] = useState(false);
@@ -12,7 +15,7 @@ function RoomCard({ data }) {
         : appliance
     ));
   };
-
+  const [message,setMessage] = useRecoilState(messageState);
   return (
     <div className="flex flex-col  max-w-xl w-full  text-white  py-2">
       <div className="flex justify-start cursor-pointer select-none" onClick={() => setCollapsed(!collapsed)}>
@@ -29,14 +32,18 @@ function RoomCard({ data }) {
             >
               <div className="flex items-center gap-2">
                 {appliance.status === "on" ? <Image src="/bulb.svg" width="40" height="40" alt="bulb" /> :
-                  <Image src="/bulboff.svg" width="40" height="40" alt="bulb" />}
+                  <Image src="/bulboff.svg" width="40" height="40" alt="bulb" />} 
                 <div className="flex flex-col items-start">
                   <div className="text-sm">{appliance.name}</div>
                   <div className="text-xs text-gray-600">{appliance.status}</div>
                 </div>
               </div>
               <button
-                onClick={() => toggleApplianceStatus(appliance.applianceId)}
+                onClick={() => {
+                  toggleApplianceStatus(appliance.applianceId);
+                  setMessage(appliance.name +" was turned "+appliance.status);
+                  
+                }}
                 className={`p-2 rounded-full text-sm px-3 py-1.5 ${appliance.status === 'on' ? 'bg-yellow-400' : 'bg-gray-200'}`}
               >
                 {appliance.status === 'on' ? 'Turn Off' : 'Turn On'}
@@ -45,6 +52,8 @@ function RoomCard({ data }) {
           ))}
         </div>
       )}
+        
+
     </div>
   );
 }

@@ -7,11 +7,16 @@ import socket from '../../utils/socket'; // Import socket instance
 import { NavBar } from '../components/NavBar';
 import RoomCard from '../components/RoomCard';
 import { useSession } from 'next-auth/react';
+import { useRecoilState, useRecoilValue } from 'recoil';
+import { messageState } from '../recoilContextProvider';
+
 
 const AppliancePage = () => {
+
   const { data: session } = useSession();
   const [data, setData] = useState({});
   const [error, setError] = useState(null);
+  const [message, setMessage] = useRecoilState(messageState);
 
   useEffect(() => {
     const loadData = async () => {
@@ -42,12 +47,15 @@ const AppliancePage = () => {
             Hello, User!
           </h1>
         )}
-        
+
         <div className='md:flex md:justify-start md:pt-4'>
           {data.residences[0].rooms.map((room, index) => (
             <RoomCard key={index} data={room} />
           ))}
         </div>
+      </div>
+      <div className='fixed bottom-0 right-0 pr-4 pb-4 w-fit h-fit bg-black text-green-500 select-none'>
+        {message}
       </div>
     </div>
   );
