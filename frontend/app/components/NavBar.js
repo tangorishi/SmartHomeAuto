@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import { signIn, signOut, useSession } from "next-auth/react";
 import Image from "next/image";
 import Link from "next/link";
@@ -17,6 +17,10 @@ export function NavBar() {
                             </div>
                         </>
                     )}
+                </div>
+                <div className="flex-1 text-center flex items-center justify-center gap-2">
+                    <Image src="/logoo.png" width="90" height="90" alt="TechGhar Logo" />
+                    <h1 className="text-2xl font-bold">TechGhar</h1>
                 </div>
                 <div>
                     <div className="flex justify-end gap-2 items-center">

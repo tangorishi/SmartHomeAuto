@@ -3,7 +3,7 @@
 import { RecoilRoot, atom } from "recoil";
 export const messageState = atom({
   key: "message",
-  default: "asfds",
+  default: "",
 });
 
 export default function RecoilContextProvider({ children }) {
