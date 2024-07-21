@@ -80,3 +80,7 @@ With a track record of successful projects, we've earned a reputation for reliab
 - Mohit Hingorani
 - Samaksh Gupta
 - Riya Agrawal
+
+## PPT Drive Link
+
+https://www.canva.com/design/DAGLe7xTObU/w3BaPuT9bGzg6i5jb917NA/view?utm_content=DAGLe7xTObU&utm_campaign=designshare&utm_medium=link&utm_source=editor
